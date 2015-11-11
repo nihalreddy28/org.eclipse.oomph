@@ -1,0 +1,27 @@
+sudo: false
+language: java
+
+jdk:
+- oraclejdk7
+
+env:
+  global:
+  - secure: D5P0ufVcDSsP9+oeDLns1MGGgACe/Y8pc0oYNJtCEXrPkUJv3KdpTCnsdFuyYEygy9PDGBAYj/q+yTQNgj5IhnK6rohgnZ+Q4czMwk0oivhPaU2Ohx6o5enJFvy0CraOc7R0q+YwVSCnQv99ApSviMicOigfR3wsasY9UUOSNVDEoBWoP5j+A16Ts40g9XGUwbalZLxu5lcj+HAZ6vFwvp5M+YUmt3g0cBkVmuIfAsJgpYknTyYqFIDcmMnp3MWk1p1NgY9gzQ/XP4b28aBdFaZjLb+HsQ5vhIKhV/+jaeHnbzGHD7lqqJ0SxlxOYcgROfkK8NzfdyV/lhETCU661w5bl4nbrKylXlc+ngocDLgHzN4ovhxaG20HBvTmulAwFvcK8FbzmBOm+Y4DY//HyG/V4B5KX5TiKfUGAFk9iZ4DQLY4DA6o/CNRHzWTAVYrwl6Fhozgb2dZIZ1QMIOCmuIH2WvhjUBp2p99JFHbZ5QzANjIhmXz7q9qhwRWerurxCXBu7bWV9/6FTNflH04+OCOHzhpm65iA6GzchnR4fhlhHSVABFXHgL2jQ8iZNhHBIIM0JlHum68qE+fnTKTUmtTZNRebRm/ArONt0CwCcI88RSnBJpm/nflH7vF4ng2gpmrTKPsFAJyJFrU1BApwO/+gxZKd9iDeDZkrrk2pqo=
+
+install:
+# avoid usage of default maven command
+- "echo \"export MAVEN_OPTS='-Dmaven.repo.local=$HOME/.m2/repository -Xmx2750m'\" > ~/.mavenrc"
+
+script:
+#- wget https://s3-eu-west-1.amazonaws.com/klib.io/www/_archives/.m2.zip
+#- unzip -d $HOME .m2.zip
+- mvn install --show-version --batch-mode --quiet --errors -P modules -DskipTests
+
+after_success:
+- chmod a+x .travis-deploy.sh
+- "./.travis-deploy.sh"
+
+branches:
+  only:
+  - master 
+  - peterkir
