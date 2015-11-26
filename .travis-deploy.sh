@@ -22,6 +22,11 @@ then
       git config --global user.name "Travis Deployer"
       git clone --quiet --branch=gh-pages https://pekirsc:${GH_TOKEN}@github.com/peterkir/org.eclipse.oomph.git . > /dev/null 2>&1 || error_exit "Error cloning gh-pages"
     
+	  echo -e "updating index.html with build details"
+	  DATE=`date +%Y%m%d-%H%M%S`
+	  sed -i -e 's|<h1>customized oomph build - last updated on .*\?<\/h1>|<h1>customized oomph build - last updated on '$DATE'</h1>|g' index.html
+	  sed -i -e 's|<h2>Branch '$TRAVIS_BRANCH' - TravisCI build <a href="https://travis-ci.org/peterkir/org.eclipse.oomph/builds/.*\?">#.*\?</a> - build on .*\?<\/h2>|<h2>Branch '$TRAVIS_BRANCH' - TravisCI build <a href="https://travis-ci.org/peterkir/org.eclipse.oomph/builds/'$TRAVIS_BUILD_ID'">#'$TRAVIS_BUILD_NUMBER'</a> - build on '$DATE'</h2>|g' index.html
+	
       RESULTDIR=./$TRAVIS_BRANCH
       mkdir -p $RESULTDIR
     
@@ -42,7 +47,7 @@ then
       
       # add, commit and push files
       git add -f .
-      git commit -m "[ci skip] Deploy Travis build #$TRAVIS_BUILD_NUMBER to gh-pages"
+      git commit -m "[ci skip] Deploy Travis build #$TRAVIS_BUILD_NUMBER for branch $TRAVIS_BRANCH to gh-pages"
       git push -fq origin gh-pages > /dev/null 2>&1 || error_exit "Error uploading the build result to gh-pages"
     
       # go back to the directory where we started
