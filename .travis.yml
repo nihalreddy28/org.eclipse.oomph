@@ -36,9 +36,9 @@ after_success:
 - cat $BINTRAY_DESC
 
 deploy:
-  on: peterkir
+  on: nihalc
   provider: bintray
   file: bintray.desc.json
-  user: peterkir
-  key:
+  user: nihalc
+  key: ad9cf60527c55a217b2268f0552bde082061e40e
     secure: uNM+/wh2Pe79PQXqPsy5Tv4Ia9rtiez2T+qVvaC9z25DZegtjuR5VXUSujw2/2364we3OnU+5q7sW6zIb7dq48XPjvly/TTR1jfMEyv78Nu+vIvekeJFXV7buXsMSs45lYdcd7EC/tXzNmDwSAmL9v2QMHmBU6cu67S0ydump8FL6LIXWBLugEgysd+e4Uf6tWJQOc3f1mX8Jqne+UdJ1WKRLHAHzkRx9k+Gk398v3uwzG7iC13twrOi2oI3Dw7Fh04QBcA+OXpOAmOxkymLruBKN4npGUh8tuqvb4HzRPOs5Utkh0jQlvDhfTahs9oDyUhRUrK9V/a36UIr3pKrzn4sdDXPbU1kWEm9mcNmKd6PtKisUQXAdwZeziQQDYIMHCSdWD1D2xMPsKSuk2qAnbnhvXKORLQMzTon49zMOTj3FR1ZJJ6gpDxjxNuFUa28PxxGe5LHQ0KehY6BsrBMPhqG5cOTpMO1/7B4ga3dO2T+y5ZHmt9TrZkRQxK67o8dwI88VBcWPo9f0ytzGtBrl9wykqD80M0oBzXqedqP0Pr0fgE/BnakVRjeEhgbbrTpZTDJHk7JuZgWBFk0gKS9N0eyjtnF7Ha/ch1JOicakC8m+6P8/mM8wVEYKPpTcFJSqbZwGiwuAe1amU8VmpHIDJNCHp7VmIRv8d9UVLRo2Ig=
